@@ -1,0 +1,44 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:get="http://www.iata.org/IATA/EDIST/2017.2">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <AirShoppingRQ Version="17.2" PrimaryLangID="EN" AltLangID="EN" xmlns="http://www.iata.org/IATA/EDIST/2017.2">
+            <CoreQuery>
+                <OriginDestinations>
+                    <OriginDestination>
+                        <Departure>
+                            <AirportCode>SHJ</AirportCode>
+                            <Date>2024-02-14</Date>
+                        </Departure>
+                        <Arrival>
+                            <AirportCode>TRV</AirportCode>
+                        </Arrival>
+                        <CalendarDates DaysBefore="0" DaysAfter="0"/>
+                    </OriginDestination>
+                    <OriginDestination>
+                        <Departure>
+                            <AirportCode>TRV</AirportCode>
+                            <Date>2024-02-16</Date>
+                        </Departure>
+                        <Arrival>
+                            <AirportCode>SHJ</AirportCode>
+                        </Arrival>
+                        <CalendarDates DaysBefore="0" DaysAfter="0"/>
+                    </OriginDestination>
+                </OriginDestinations>
+            </CoreQuery>
+            <DataLists>
+                <PassengerList>
+                    <Passenger PassengerID="T1">
+                        <PTC>ADT</PTC>
+                    </Passenger>
+                    <Passenger PassengerID="T2">
+                        <PTC>CHD</PTC>
+                    </Passenger>
+                    <Passenger PassengerID="T3">
+                        <PTC>INF</PTC>
+                    </Passenger>
+                </PassengerList>
+            </DataLists>
+        </AirShoppingRQ>
+    </soapenv:Body>
+</soapenv:Envelope>
