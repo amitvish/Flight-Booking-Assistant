@@ -1,7 +1,7 @@
 import requests
 from extract_code import extract_travel_details
 
-user_input = input("Please describe your travel plans: ")
+# user_input = input("Please describe your travel plans: ")
 
 def get_auth_token():
     auth_url = "https://aero-suite-stage4-airarabia.isaaviation.net/api/auth/authenticate"
@@ -63,26 +63,30 @@ def send_soap_request(soap_request, soap_url, token):
     response = requests.post(soap_url, data=soap_request, headers=soap_headers)
     return response
 
+
+def get_travel_plan_details(user_input):
 # Main execution starts here
-token = get_auth_token()
+    token = get_auth_token()
 
-extracted_details = extract_travel_details(user_input)
+    extracted_details = extract_travel_details(user_input)
 
-journey_type = 'one-way' if extracted_details.get('return_date') is None else 'round-trip'
-departure_code = extracted_details['departure_code']
-arrival_code = extracted_details['arrival_code']
-departure_date = extracted_details['departure_date']
-return_date = extracted_details.get('return_date')  # This may be None for one-way trips
+    journey_type = 'one-way' if extracted_details.get('return_date') is None else 'round-trip'
+    departure_code = extracted_details['departure_code']
+    arrival_code = extracted_details['arrival_code']
+    departure_date = extracted_details['departure_date']
+    return_date = extracted_details.get('return_date')  # This may be None for one-way trips
 
 
-soap_request = generate_soap_request(journey_type, departure_code, arrival_code, departure_date, return_date)
+    soap_request = generate_soap_request(journey_type, departure_code, arrival_code, departure_date, return_date)
 
-soap_url = 'https://aero-search-best-offer-soap-api-service-stage4-airarabia.isaaviation.net/best-offer/AirShopping/17.2/V1/'
+    soap_url = 'https://aero-search-best-offer-soap-api-service-stage4-airarabia.isaaviation.net/best-offer/AirShopping/17.2/V1/'
 
-# print("SOAP Request Body:", soap_request)
+    # print("SOAP Request Body:", soap_request)
 
-response = send_soap_request(soap_request, soap_url, token)
+    response = send_soap_request(soap_request, soap_url, token)
 
-# Output the response for further handling or debugging
-print("Response Status Code:", response.status_code)
-print("Response Body:", response.text)
+    # Output the response for further handling or debugging
+    # print("Response Status Code:", response.status_code)
+    # print("Response Body:", response.text)
+
+    return response.text  # Return the SOAP response text for further processing
