@@ -1,4 +1,6 @@
 import xml.etree.ElementTree as ET
+import json
+
 
 def parse_flight_details_from_soap_response(soap_response):
     root = ET.fromstring(soap_response)
@@ -35,11 +37,7 @@ def parse_flight_details_from_soap_response(soap_response):
     
     return flight_details
 
-# Example usage
-soap_response = """
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
-    <!-- SOAP response content -->
-</SOAP-ENV:Envelope>
-"""
-flight_details = parse_flight_details_from_soap_response(soap_response)
-print(flight_details)
+# After extracting flight details into flight_details dictionary
+def convert_to_json(flight_details):
+    return json.dumps(flight_details, indent=4)
+
