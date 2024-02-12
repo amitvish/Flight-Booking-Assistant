@@ -81,12 +81,12 @@ def get_travel_plan_details(user_input):
 
     soap_url = 'https://aero-search-best-offer-soap-api-service-stage4-airarabia.isaaviation.net/best-offer/AirShopping/17.2/V1/'
 
-    # print("SOAP Request Body:", soap_request)
+    print("SOAP Request Body:", soap_request)
 
     response = send_soap_request(soap_request, soap_url, token)
 
     # Output the response for further handling or debugging
-    # print("Response Status Code:", response.status_code)
-    # print("Response Body:", response.text)
+    print("Response Status Code:", response.status_code)
+    print("Response Body:", response.text)
 
     return response.text  # Return the SOAP response text for further processing

@@ -8,13 +8,13 @@ from langchain.indexes import VectorstoreIndexCreator
 from langchain.vectorstores import Chroma
 from langchain.document_loaders import DirectoryLoader
 from main import get_travel_plan_details
-from parse import parse_flight_details_from_soap_response, convert_to_json
+from parse import parse_flight_details_from_soap_response
  
  
 import constants
  
 os.environ["OPENAI_API_KEY"] = constants.APIKEY
-# print("Using OpenAI API Key:", os.environ.get("OPENAI_API_KEY"))
+print("Using OpenAI API Key:", os.environ.get("OPENAI_API_KEY"))
  
 # Enable to save to disk & reuse the model (for repeated queries on the same data)
 PERSIST = False
@@ -33,10 +33,7 @@ with open(temp_data_file_path, "w") as file:
  
 # Parse flight details from SOAP response
 flight_details = parse_flight_details_from_soap_response(soap_response_data)
-# print("Parsed Flight Details:", flight_details)
- 
-flight_details_json = convert_to_json(flight_details)  # Convert to JSON
-# print("Flight Details JSON:", flight_details_json)
+print("Parsed Flight Details:", flight_details)
  
 # Assuming flight_details is a dictionary with parsed flight details
 print("Flight Details:")
